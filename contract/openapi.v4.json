@@ -1,0 +1,4579 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GreenRev modular SaaS",
+    "version": "0.4.1",
+    "description": "Current module API. The historical Python contract is retained separately. All money inputs are decimal strings in naira unless named *_minor; catalogue prices are integer kobo. Host adapter supplies identity and CSRF."
+  },
+  "servers": [
+    {
+      "url": "/api/saas"
+    }
+  ],
+  "paths": {
+    "/session": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Existing host session and CSRF token",
+        "operationId": "get_session",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    },
+    "/catalogue": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Public subscription catalogue",
+        "operationId": "get_catalogue",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    },
+    "/workspace": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Module-filtered business workspace",
+        "operationId": "get_workspace",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    },
+    "/billing": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Subscription and saved quotes",
+        "operationId": "get_billing",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    },
+    "/entitlements": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Effective subscription",
+        "operationId": "get_entitlements",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    },
+    "/reports": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Module/branch/combined finance reports",
+        "operationId": "get_reports",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "parameters": [
+          {
+            "name": "module",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "branch_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/ledger": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Scoped journal history",
+        "operationId": "get_ledger",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "parameters": [
+          {
+            "name": "module",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "branch_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/audit": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Owner audit history",
+        "operationId": "get_audit",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    },
+    "/rentals/availability": {
+      "get": {
+        "tags": [
+          "Read"
+        ],
+        "summary": "Available rental fleet for a date interval",
+        "operationId": "get_rentals_availability",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "parameters": [
+          {
+            "name": "start_at",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end_at",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ]
+      }
+    },
+    "/onboarding": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Select activities and start one trial",
+        "operationId": "post_onboarding",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Onboarding"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/organisation/profile": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Business name and primary activity",
+        "operationId": "post_organisation_profile",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/branches": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Create a branch within purchased limits",
+        "operationId": "post_branches",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/staff/memberships": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Grant membership to a host-verified subject",
+        "operationId": "post_staff_memberships",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/staff/{memberId}/disable": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Disable staff access",
+        "operationId": "post_staff_memberId_disable",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/staff/{memberId}/enable": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Enable staff within capacity",
+        "operationId": "post_staff_memberId_enable",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/capital": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Record owner capital",
+        "operationId": "post_capital",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/estimate": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Entered-rate landed cost estimate",
+        "operationId": "post_estimate",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/billing/quotes": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Create a pinned itemised quote",
+        "operationId": "post_billing_quotes",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/billing/cancel": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Cancel access with history preserved",
+        "operationId": "post_billing_cancel",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/billing/checkout": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Initialise configured hosted checkout",
+        "operationId": "post_billing_checkout",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/marketplace/requests": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "summary": "Queue a public-safe publication request",
+        "operationId": "post_marketplace_requests",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Create a rental record",
+        "operationId": "post_rentals",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/checkout": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Checkout a rental record",
+        "operationId": "post_rentals_recordId_checkout",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/return": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Return a rental record",
+        "operationId": "post_rentals_recordId_return",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/cancel": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Cancel a rental record",
+        "operationId": "post_rentals_recordId_cancel",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/reschedule": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Reschedule a rental record",
+        "operationId": "post_rentals_recordId_reschedule",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/deposit": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Deposit a rental record",
+        "operationId": "post_rentals_recordId_deposit",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/deduction": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Deduction a rental record",
+        "operationId": "post_rentals_recordId_deduction",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/rentals/{recordId}/refund": {
+      "post": {
+        "tags": [
+          "Rentals"
+        ],
+        "summary": "Refund a rental record",
+        "operationId": "post_rentals_recordId_refund",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/haulage": {
+      "post": {
+        "tags": [
+          "Haulage"
+        ],
+        "summary": "Create a haulage record",
+        "operationId": "post_haulage",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/haulage/{recordId}/assign": {
+      "post": {
+        "tags": [
+          "Haulage"
+        ],
+        "summary": "Assign a haulage record",
+        "operationId": "post_haulage_recordId_assign",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/haulage/{recordId}/dispatch": {
+      "post": {
+        "tags": [
+          "Haulage"
+        ],
+        "summary": "Dispatch a haulage record",
+        "operationId": "post_haulage_recordId_dispatch",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/haulage/{recordId}/deliver": {
+      "post": {
+        "tags": [
+          "Haulage"
+        ],
+        "summary": "Deliver a haulage record",
+        "operationId": "post_haulage_recordId_deliver",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/haulage/{recordId}/cancel": {
+      "post": {
+        "tags": [
+          "Haulage"
+        ],
+        "summary": "Cancel a haulage record",
+        "operationId": "post_haulage_recordId_cancel",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/workshop": {
+      "post": {
+        "tags": [
+          "Workshop"
+        ],
+        "summary": "Create a workshop record",
+        "operationId": "post_workshop",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/workshop/{recordId}/start": {
+      "post": {
+        "tags": [
+          "Workshop"
+        ],
+        "summary": "Start a workshop record",
+        "operationId": "post_workshop_recordId_start",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/workshop/{recordId}/complete": {
+      "post": {
+        "tags": [
+          "Workshop"
+        ],
+        "summary": "Complete a workshop record",
+        "operationId": "post_workshop_recordId_complete",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/workshop/{recordId}/cancel": {
+      "post": {
+        "tags": [
+          "Workshop"
+        ],
+        "summary": "Cancel a workshop record",
+        "operationId": "post_workshop_recordId_cancel",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/fleet/assets": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Create a rental/haulage fleet asset",
+        "operationId": "post_fleet_assets",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/fleet/assets/{assetId}/status": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Update maintenance/archive status",
+        "operationId": "post_fleet_assets_assetId_status",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/service-invoices": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Issue service invoice",
+        "operationId": "post_service_invoices",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/service-invoices/{invoiceId}/void": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Void unpaid unearned invoice",
+        "operationId": "post_service_invoices_invoiceId_void",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/service-invoices/{invoiceId}/credit": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Approve full invoice credit",
+        "operationId": "post_service_invoices_invoiceId_credit",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/service-invoices/{invoiceId}/refund": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Confirm refund against a full credit",
+        "operationId": "post_service_invoices_invoiceId_refund",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/receipts": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Record customer payment evidence",
+        "operationId": "post_receipts",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/receipts/{receiptId}/verify": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Independently verify customer receipt",
+        "operationId": "post_receipts_receiptId_verify",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "receiptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/parts": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Create a branch product",
+        "operationId": "post_parts",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/parts/{partId}/receive": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Receive stock and supplier payable",
+        "operationId": "post_parts_partId_receive",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/parts-orders": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Reserve stock and create order",
+        "operationId": "post_parts_orders",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/office-expenses": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Submit operating expense",
+        "operationId": "post_office_expenses",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/transfers": {
+      "post": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Request parts branch transfer",
+        "operationId": "post_transfers",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/parts-orders/{orderId}/fulfil": {
+      "post": {
+        "tags": [
+          "Parts"
+        ],
+        "summary": "Fulfil a parts order",
+        "operationId": "post_parts_orders_orderId_fulfil",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/parts-orders/{orderId}/return": {
+      "post": {
+        "tags": [
+          "Parts"
+        ],
+        "summary": "Return a parts order",
+        "operationId": "post_parts_orders_orderId_return",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/parts-orders/{orderId}/refund": {
+      "post": {
+        "tags": [
+          "Parts"
+        ],
+        "summary": "Refund a parts order",
+        "operationId": "post_parts_orders_orderId_refund",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/office-expenses/{expenseId}/approve": {
+      "post": {
+        "tags": [
+          "Expenses"
+        ],
+        "summary": "Approve operating expense",
+        "operationId": "post_office_expenses_expenseId_approve",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/office-expenses/{expenseId}/reject": {
+      "post": {
+        "tags": [
+          "Expenses"
+        ],
+        "summary": "Reject operating expense",
+        "operationId": "post_office_expenses_expenseId_reject",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/office-expenses/{expenseId}/post": {
+      "post": {
+        "tags": [
+          "Expenses"
+        ],
+        "summary": "Post operating expense",
+        "operationId": "post_office_expenses_expenseId_post",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/office-expenses/{expenseId}/pay": {
+      "post": {
+        "tags": [
+          "Expenses"
+        ],
+        "summary": "Pay operating expense",
+        "operationId": "post_office_expenses_expenseId_pay",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "expenseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/transfers/{transferId}/dispatch": {
+      "post": {
+        "tags": [
+          "Transfers"
+        ],
+        "summary": "Dispatch full parts transfer",
+        "operationId": "post_transfers_transferId_dispatch",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transferId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/transfers/{transferId}/receive": {
+      "post": {
+        "tags": [
+          "Transfers"
+        ],
+        "summary": "Receive full parts transfer",
+        "operationId": "post_transfers_transferId_receive",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transferId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/transfers/{transferId}/cancel": {
+      "post": {
+        "tags": [
+          "Transfers"
+        ],
+        "summary": "Cancel full parts transfer",
+        "operationId": "post_transfers_transferId_cancel",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transferId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/vehicles": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Create dealer sale vehicle",
+        "operationId": "post_vehicles",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/bills": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Record vehicle acquisition/landed cost",
+        "operationId": "post_bills",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/invoices": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Create dealer cash/instalment sale",
+        "operationId": "post_invoices",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/payments": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Record dealer payment evidence",
+        "operationId": "post_payments",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/payments/{paymentId}/verify": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Independently confirm dealer payment",
+        "operationId": "post_payments_paymentId_verify",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/invoices/{invoiceId}/handover": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Confirm vehicle handover",
+        "operationId": "post_invoices_invoiceId_handover",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/vehicles/{vehicleId}/readiness": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Readiness dealer vehicle",
+        "operationId": "post_vehicles_vehicleId_readiness",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/vehicles/{vehicleId}/price": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Price dealer vehicle",
+        "operationId": "post_vehicles_vehicleId_price",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/vehicles/{vehicleId}/publish": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Publish dealer vehicle",
+        "operationId": "post_vehicles_vehicleId_publish",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/vehicles/{vehicleId}/reserve": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Reserve dealer vehicle",
+        "operationId": "post_vehicles_vehicleId_reserve",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/vehicles/{vehicleId}/release": {
+      "post": {
+        "tags": [
+          "Dealer"
+        ],
+        "summary": "Release dealer vehicle",
+        "operationId": "post_vehicles_vehicleId_release",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/platform/catalogue": {
+      "get": {
+        "tags": [
+          "Platform"
+        ],
+        "summary": "Privileged catalogue read",
+        "operationId": "get_platform_catalogue",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Platform"
+        ],
+        "summary": "Publish a catalogue version",
+        "operationId": "post_platform_catalogue",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/platform/subscribers/{tenantId}": {
+      "get": {
+        "tags": [
+          "Platform"
+        ],
+        "summary": "Privileged subscriber usage/read",
+        "operationId": "get_platform_subscribers_tenantId",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/platform/subscribers/{tenantId}/activate": {
+      "post": {
+        "tags": [
+          "Platform"
+        ],
+        "summary": "Record independently verified billing activation",
+        "operationId": "post_platform_subscribers_tenantId_activate",
+        "description": "Host-verified identity is required. Module, role, branch and subscription policies apply as documented. Mutation retries require an Idempotency-Key.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/webhooks/paystack": {
+      "post": {
+        "tags": [
+          "Platform"
+        ],
+        "summary": "Signed raw-body Paystack ingress",
+        "operationId": "post_webhooks_paystack",
+        "description": "Provider webhook: raw-body SHA-512 HMAC and independent Paystack transaction verification; host browser CSRF is not used.",
+        "responses": {
+          "200": {
+            "description": "Successful domain result"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role/module/branch/subscription access refused"
+          },
+          "409": {
+            "description": "Version, capacity, payment or workflow conflict"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Onboarding": {
+        "type": "object",
+        "required": [
+          "name",
+          "modules",
+          "primary_module"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "modules": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "DEALER",
+                "PARTS",
+                "RENTAL",
+                "HAULAGE",
+                "MECHANIC"
+              ]
+            }
+          },
+          "primary_module": {
+            "type": "string",
+            "enum": [
+              "DEALER",
+              "PARTS",
+              "RENTAL",
+              "HAULAGE",
+              "MECHANIC"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "SAAS",
+              "BUNDLE",
+              "MARKETPLACE"
+            ]
+          }
+        }
+      },
+      "QuoteRequest": {
+        "type": "object",
+        "required": [
+          "modules",
+          "primary_module",
+          "tier"
+        ],
+        "properties": {
+          "modules": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "DEALER",
+                "PARTS",
+                "RENTAL",
+                "HAULAGE",
+                "MECHANIC"
+              ]
+            }
+          },
+          "primary_module": {
+            "type": "string",
+            "enum": [
+              "DEALER",
+              "PARTS",
+              "RENTAL",
+              "HAULAGE",
+              "MECHANIC"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "SAAS",
+              "BUNDLE",
+              "MARKETPLACE"
+            ]
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "STARTER",
+              "GROWTH",
+              "ENTERPRISE"
+            ]
+          },
+          "branches": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "users": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "capacities": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

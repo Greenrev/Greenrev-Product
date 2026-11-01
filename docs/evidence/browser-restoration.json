@@ -1,0 +1,15 @@
+{
+  "completed_at": "2026-11-01T11:02:20.390Z",
+  "checks": [
+    "Rental service invoice opens with buyer details and produces a printable PDF",
+    "Recorded payment evidence becomes a buyer receipt only after bank verification",
+    "Weekly, monthly, annual and financial-year reports, trial balance, valid ZIP export and review record work in the browser",
+    "CSV preview, reviewed atomic save and inventory search work without publishing imported items",
+    "Image upload, full-size viewing, explicit public photo selection and inventory-to-marketplace delivery work",
+    "Withdrawn inventory is removed from the public marketplace",
+    "Marketplace-only subscribers can publish directly while management and finance remain gated",
+    "Software-only businesses see a clear package upgrade path at publication",
+    "Financial reports fit a 390px mobile viewport",
+    "No uncaught browser errors across restored finance, documents, imports and marketplace flows"
+  ]
+}

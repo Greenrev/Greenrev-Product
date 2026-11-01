@@ -1,0 +1,44 @@
+{
+  "name": "@greenrev/saas-domain",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "check": "npm run build",
+    "dev": "npm run build && next dev web --hostname 127.0.0.1 --port 3100",
+    "build:web": "npm run build && next build web",
+    "check:web": "tsc --noEmit -p web/tsconfig.json",
+    "demo": "node scripts/start-demo.mjs",
+    "test:http": "npm run build && node scripts/http-smoke.mjs",
+    "test:browser": "npm run build && node scripts/browser-smoke.mjs",
+    "verify": "node scripts/verify.mjs",
+    "test:browser:restored": "npm run build && node scripts/browser-restoration.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright": "^1.62.1",
+    "typescript": "^5.9.0"
+  },
+  "dependencies": {
+    "next": "^16.4.3",
+    "pg": "^8.23.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+web/.next*/
+.data/
+web/.data/
+.env
+.env.local
+*.tsbuildinfo
+test-results/

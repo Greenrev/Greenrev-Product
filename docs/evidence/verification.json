@@ -1,0 +1,64 @@
+{
+  "completed_at": "2026-11-01T11:00:42.165Z",
+  "node": "v24.22.1",
+  "tests": 97,
+  "passed_tests": 97,
+  "failed_tests": 0,
+  "checks": [
+    {
+      "name": "typescript-build",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "unit-tests",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "frontend-types",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "next-production-build",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "next-http-smoke",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "browser-scenarios",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "name": "browser-restored-workflows",
+      "passed": true,
+      "exit_code": 0
+    }
+  ],
+  "release": "0.5.0",
+  "local_marketplace_e2e_tested": true,
+  "live_main_marketplace_tested": false,
+  "live_postgresql_tested": false,
+  "live_paystack_tested": false,
+  "live_sso_tested": false,
+  "deployed": false,
+  "followup_checks": [
+    {
+      "name": "restored-browser-and-print-layout",
+      "passed": true,
+      "completed_at": "2026-11-01T11:02:20.390Z",
+      "reason": "Print-only light colour scheme and paper margin verified by rendering the actual one-page invoice PDF."
+    },
+    {
+      "name": "next-production-build-after-print-layout",
+      "passed": true,
+      "completed_at": "2026-11-01T11:04:03.701701+00:00"
+    }
+  ]
+}

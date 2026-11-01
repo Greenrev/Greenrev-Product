@@ -1,0 +1,512 @@
+{
+  "release": "0.5.0",
+  "source_contract": "contract/openapi.v3.json",
+  "operations_reviewed": 84,
+  "legacy_path_aliases_claimed": false,
+  "entries": [
+    {
+      "method": "GET",
+      "legacy_path": "/health",
+      "status": "Host",
+      "current_equivalent": "Existing host health check; standalone readiness is exercised through /api/saas/session."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/session",
+      "status": "Host + demo",
+      "current_equivalent": "GET /session in host mount; standalone demo session remains isolated."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/login",
+      "status": "Host",
+      "current_equivalent": "Existing verified SSO/sign-in; no replacement password database."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/demo-session",
+      "status": "Local only",
+      "current_equivalent": "POST /demo/session; server-held synthetic identities and strict Origin/CSRF."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/logout",
+      "status": "Host",
+      "current_equivalent": "Existing host sign-out/session revocation."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/workspace",
+      "status": "Preserved",
+      "current_equivalent": "GET /workspace; independent module navigation and scoped records, plus activity/branch summaries."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/parties",
+      "status": "Expanded",
+      "current_equivalent": "POST /parties; CUSTOMER/SUPPLIER/BOTH/LENDER, shared contacts with branch checks."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles",
+      "status": "Expanded",
+      "current_equivalent": "POST /vehicles; owned/consigned stock and automatic private Passport relationship/history."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/import/vehicles",
+      "status": "Adapted",
+      "current_equivalent": "POST /intake/preview and /intake/import with VEHICLE; atomic reviewed rows, DRAFT status."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/readiness",
+      "status": "Preserved",
+      "current_equivalent": "POST /vehicles/{id}/readiness; optimistic version, documents and inspection."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/price",
+      "status": "Preserved",
+      "current_equivalent": "POST /vehicles/{id}/price; existing stock repricing."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/publish",
+      "status": "Expanded",
+      "current_equivalent": "POST /vehicles/{id}/publish makes stock available; explicit /marketplace/requests publishes it."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/reserve",
+      "status": "Preserved",
+      "current_equivalent": "POST /vehicles/{id}/reserve; reconciliation withdraws unavailable public inventory."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/release",
+      "status": "Preserved",
+      "current_equivalent": "POST /vehicles/{id}/release; available stock can be explicitly republished."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/vehicles/{vehicleId}/passport",
+      "status": "Adapted",
+      "current_equivalent": "Automatic private lifecycle history; /passports/link, /passports/{vin}, /contributions for reviewed notes."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/passport",
+      "status": "Adapted",
+      "current_equivalent": "Automatic private lifecycle history; /passports/link, /passports/{vin}, /contributions for reviewed notes."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/public/listings/{vehicleId}",
+      "status": "Adapted",
+      "current_equivalent": "Local public /public-marketplace feed and /marketplace listing permalink; signed receiver for main-site delivery."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/bills",
+      "status": "Expanded",
+      "current_equivalent": "Dealer /bills; parts /parts/{id}/receive; general /office-expenses. Currency/rates, input tax, AP and settlement FX are retained."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/parts",
+      "status": "Preserved",
+      "current_equivalent": "POST /parts; dedicated SKU stock separate from vehicle sales/fleet."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/parts-orders",
+      "status": "Expanded",
+      "current_equivalent": "POST /parts-orders; reservation, tax/discount, buyer invoice, separate verified payment and fulfilment."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/parts-orders/{orderId}/fulfil",
+      "status": "Preserved",
+      "current_equivalent": "POST /parts-orders/{id}/fulfil; releases inventory and recognises net sales/COGS."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/parts-orders/{orderId}/return",
+      "status": "Expanded",
+      "current_equivalent": "POST /parts-orders/{id}/return; full return restores cost, reverses tax/sale and records refund due; /refund confirms cash."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/invoices",
+      "status": "Expanded",
+      "current_equivalent": "POST /invoices supports CASH/INSTALLMENT/PARTNER, lender/agreement, policy and instalment schedule; safe buyer document."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/invoices/{invoiceId}/handover",
+      "status": "Preserved",
+      "current_equivalent": "POST /invoices/{id}/handover; confirmed settlement or owner-approved eligible credit release; deferred income earned."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/invoices/{invoiceId}/return",
+      "status": "Restored",
+      "current_equivalent": "POST /invoices/{id}/return; quarantine/readiness reset, stock recovery, refund liability and owner-payout reconciliation guard."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/payments",
+      "status": "Expanded",
+      "current_equivalent": "POST /payments for dealer INVOICE/BILL/CONSIGNMENT/REFUND; /receipts for parts/services. Evidence stays unposted."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/payments/{paymentId}/verify",
+      "status": "Expanded",
+      "current_equivalent": "POST /payments/{id}/verify or /receipts/{id}/verify; independent confirmation, exact carrying/FX and buyer receipt."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/capital",
+      "status": "Preserved",
+      "current_equivalent": "POST /capital; also reviewed opening/adjustment journals through /financial/journals."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/settings",
+      "status": "Adapted",
+      "current_equivalent": "/financial/settings for fiscal/policy/closing/tax identity; /organisation/profile for business name/primary activity."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/reports",
+      "status": "Expanded",
+      "current_equivalent": "Existing /reports remains compatible; new /financial-reports adds presets, historical ageing, detailed UI, review and nine-file export."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/ledger",
+      "status": "Expanded",
+      "current_equivalent": "Existing /ledger retained; scoped/date-based general ledger in /financial-reports and CSV export."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/fx",
+      "status": "Restored",
+      "current_equivalent": "GET /fx with configured timestamped reference provider, cache/stale rejection and explicit manual-rate fallback workflow."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/estimate",
+      "status": "Preserved",
+      "current_equivalent": "POST /estimate; exact landed costs/contingency/margin and unposted price estimate."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/leads",
+      "status": "Restored",
+      "current_equivalent": "POST /leads, GET /tools; scoped customer interest/contact and follow-up."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/leads/{leadId}/stage",
+      "status": "Adapted",
+      "current_equivalent": "POST /leads/{id}; versioned stage, notes and follow-up updates."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/outbox/{eventId}/ack",
+      "status": "Adapted",
+      "current_equivalent": "GET /integrations; separately trusted INTEGRATION_WORKER /platform/subscribers/{tenant}/outbox/{event}/ack, confirmed consumer reference."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/organisation",
+      "status": "Adapted",
+      "current_equivalent": "GET /workspace and /tools; business, branch, membership, settings and purchased activity context."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/organisation/profile",
+      "status": "Preserved",
+      "current_equivalent": "POST /organisation/profile; primary must be a selected activity."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/branches",
+      "status": "Expanded",
+      "current_equivalent": "POST /branches and /branches/{id}; allowance, modules, scope and historical assignment preservation."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/staff/invitations",
+      "status": "Restored",
+      "current_equivalent": "POST /staff/invitations; verified host subject, scoped roles/modules, reserved capacity, expiry and acceptance page."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/invitations/accept",
+      "status": "Adapted",
+      "current_equivalent": "POST /staff/invitations/{id}/accept from the named verified host account; account creation/sign-in remains host-owned."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/staff/{userId}/disable",
+      "status": "Preserved",
+      "current_equivalent": "POST /staff/{id}/disable; owner/self and privileged-role safeguards."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/staff/{userId}/enable",
+      "status": "Preserved",
+      "current_equivalent": "POST /staff/{id}/enable; active plan/capacity and role authority."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/staff/{userId}/role",
+      "status": "Adapted",
+      "current_equivalent": "POST /staff/{id}/access; owner-constrained role/module/branch editor."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/staff/{userId}/branch",
+      "status": "Adapted",
+      "current_equivalent": "POST /staff/{id}/access with branches and module checks."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/vehicles/{vehicleId}/transfer",
+      "status": "Adapted",
+      "current_equivalent": "POST /vehicle-transfers, then dispatch/receive/cancel/resolve; source/destination checks and frozen historical branch journals."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/parts/{partId}/transfer",
+      "status": "Adapted",
+      "current_equivalent": "POST /transfers; quantity/cost, reservations, destination confirmation and finance-reviewed shortages."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/fleet/assets",
+      "status": "Expanded",
+      "current_equivalent": "POST /fleet/assets and /status; separate rental/haulage fleet, VIN/capacity/conflict checks and Passport history."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/service-jobs",
+      "status": "Adapted",
+      "current_equivalent": "Distinct POST /rentals, /haulage and /workshop; industry-specific schedules, agreements, inspection, POD and job details."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/service-jobs/{jobId}/stage",
+      "status": "Adapted",
+      "current_equivalent": "Rental checkout/return/cancel; haulage assign/dispatch/deliver/cancel; workshop start/complete/cancel, with scope/version guards."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/service-invoices",
+      "status": "Expanded",
+      "current_equivalent": "POST /service-invoices; deferred/earned services, discount/tax, due terms, buyer documents and full credit/refund/void."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/service-invoices/{invoiceId}/payments",
+      "status": "Adapted",
+      "current_equivalent": "POST /receipts {invoice_id,amount,reference}; service/parts payment evidence."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/service-invoices/{invoiceId}/payments/{receiptId}/verify",
+      "status": "Adapted",
+      "current_equivalent": "POST /receipts/{id}/verify; independently confirmed posting and receipt document."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/passports/{vin}",
+      "status": "Expanded",
+      "current_equivalent": "GET /passports/{vin}; authorised linked relationship, private local records and explicitly shared cross-business records only."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/passports/{vin}/contributions",
+      "status": "Expanded",
+      "current_equivalent": "POST /passports/{vin}/contributions; append-only source/category/date/evidence, PRIVATE/SHARED and DECLARED/REVIEWED."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/passports/{vin}/grants",
+      "status": "Expanded",
+      "current_equivalent": "Owner-controlled existing business grants, plus named-account grants, expiry and revocation; source private evidence stays private."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/smart-upload/preview",
+      "status": "Adapted",
+      "current_equivalent": "POST /intake/preview; conservative text/CSV/transcript extraction including Passport events, no draft/source audit persistence, reviewed commit."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/entitlements",
+      "status": "Preserved",
+      "current_equivalent": "GET /entitlements; status, purchased modules, capacity and history availability."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/platform/packages",
+      "status": "Adapted",
+      "current_equivalent": "GET/POST /platform/catalogue; versioned activity/core/marketplace rates, tier allowances and extra-unit prices."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/platform/packages",
+      "status": "Adapted",
+      "current_equivalent": "GET/POST /platform/catalogue; versioned activity/core/marketplace rates, tier allowances and extra-unit prices."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/platform/subscribers",
+      "status": "Restored",
+      "current_equivalent": "GET /platform/subscribers; separately authorised paginated directory and per-subscriber usage."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/platform/subscribers/{tenantId}/subscription",
+      "status": "Adapted",
+      "current_equivalent": "Quote-pinned /platform/subscribers/{tenant}/activate after independently confirmed payment; no tenant-owner global powers."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/platform/audit",
+      "status": "Restored",
+      "current_equivalent": "GET /platform/audit for separately granted PLATFORM_AUDIT; platform subscriber decisions and catalogue history."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/branch-summary",
+      "status": "Restored",
+      "current_equivalent": "GET /branch-summary plus module dashboards and branch-filtered financial reports."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/transfers",
+      "status": "Expanded",
+      "current_equivalent": "Parts /transfers and vehicle /vehicle-transfers; GET /workspace exposes scoped transfer records for each screen."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/transfers",
+      "status": "Expanded",
+      "current_equivalent": "Parts /transfers and vehicle /vehicle-transfers; GET /workspace exposes scoped transfer records for each screen."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/transfers/{transferId}/dispatch",
+      "status": "Expanded",
+      "current_equivalent": "POST /transfers/{id}/dispatch (parts) or /vehicle-transfers/{id}/dispatch; value moved to transit."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/transfers/{transferId}/receive",
+      "status": "Expanded",
+      "current_equivalent": "Destination /receive confirms part quantity or vehicle VIN/evidence; discrepancies retain unresolved value."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/transfers/{transferId}/cancel",
+      "status": "Preserved",
+      "current_equivalent": "Undispatched request cancellation only."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/transfers/{transferId}/resolve",
+      "status": "Restored",
+      "current_equivalent": "Finance-reviewed parts FOUND/LOSS or confirmed correct-vehicle receipt; no silent transit write-off."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/marketplace/requests",
+      "status": "Expanded",
+      "current_equivalent": "GET /marketplace and POST /marketplace/requests; photos, preview, plan gate, direct-only mode, public URL, durable delivery and withdrawal."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/marketplace/requests",
+      "status": "Expanded",
+      "current_equivalent": "GET /marketplace and POST /marketplace/requests; photos, preview, plan gate, direct-only mode, public URL, durable delivery and withdrawal."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/platform/listing-requests",
+      "status": "Adapted",
+      "current_equivalent": "GET /platform/subscribers/{tenant}/marketplace after authorised directory selection."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/platform/listing-requests/{requestId}/moderate",
+      "status": "Adapted",
+      "current_equivalent": "POST /platform/subscribers/{tenant}/marketplace/{id}/moderate; expected generation, reason and separate platform authority."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/office-expenses",
+      "status": "Expanded",
+      "current_equivalent": "POST /office-expenses and GET /workspace; currency, booked rate, approved input tax, category, branch/activity and supplier balance."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/office-expenses",
+      "status": "Expanded",
+      "current_equivalent": "POST /office-expenses and GET /workspace; currency, booked rate, approved input tax, category, branch/activity and supplier balance."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/expense-categories",
+      "status": "Restored",
+      "current_equivalent": "POST /expense-categories, GET /tools categories and recurring expense category selector."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/expense-categories",
+      "status": "Restored",
+      "current_equivalent": "POST /expense-categories, GET /tools categories and recurring expense category selector."
+    },
+    {
+      "method": "GET",
+      "legacy_path": "/recurring-expenses",
+      "status": "Adapted",
+      "current_equivalent": "POST /expense-templates, GET /tools; due frequency/category/amount and disable."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/recurring-expenses",
+      "status": "Adapted",
+      "current_equivalent": "POST /expense-templates, GET /tools; due frequency/category/amount and disable."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/recurring-expenses/{templateId}/generate",
+      "status": "Adapted",
+      "current_equivalent": "POST /expense-templates/{id}/generate; one due draft advances once and never auto-charges cash."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/office-expenses/{expenseId}/approve",
+      "status": "Preserved",
+      "current_equivalent": "POST /office-expenses/{id}/approve; finance scope and optimistic version."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/office-expenses/{expenseId}/reject",
+      "status": "Preserved",
+      "current_equivalent": "POST /office-expenses/{id}/reject; no posted accounting on rejected draft."
+    },
+    {
+      "method": "POST",
+      "legacy_path": "/office-expenses/{expenseId}/post",
+      "status": "Expanded",
+      "current_equivalent": "POST /office-expenses/{id}/post; approved expense net/input-tax/AP posting, followed by independently confirmed settlement and FX."
+    }
+  ]
+}

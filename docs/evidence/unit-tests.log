@@ -1,0 +1,592 @@
+TAP version 13
+# Subtest: local demo uses the actual browser host when Next normalises its internal URL
+ok 1 - local demo uses the actual browser host when Next normalises its internal URL
+  ---
+  duration_ms: 2.92656
+  type: 'test'
+  ...
+# Subtest: local origin resolution refuses external hosts, misleading localhost suffixes and wrong ports
+ok 2 - local origin resolution refuses external hosts, misleading localhost suffixes and wrong ports
+  ---
+  duration_ms: 1.082862
+  type: 'test'
+  ...
+# Subtest: explicitly configured demo origins stay pinned and browser Origin is not accepted as authority
+ok 3 - explicitly configured demo origins stay pinned and browser Origin is not accepted as authority
+  ---
+  duration_ms: 0.392622
+  type: 'test'
+  ...
+# Subtest: host mount uses existing identity and CSRF, provides a non-demo session and refuses unsigned provider ingress
+ok 4 - host mount uses existing identity and CSRF, provides a non-demo session and refuses unsigned provider ingress
+  ---
+  duration_ms: 29.719458
+  type: 'test'
+  ...
+# Subtest: asynchronous identity-directory rejection cannot accidentally grant staff membership
+ok 5 - asynchronous identity-directory rejection cannot accidentally grant staff membership
+  ---
+  duration_ms: 5.500668
+  type: 'test'
+  ...
+# Subtest: an accountant assigned to Rentals cannot read Parts journals through combined reports
+ok 6 - an accountant assigned to Rentals cannot read Parts journals through combined reports
+  ---
+  duration_ms: 11.682262
+  type: 'test'
+  ...
+# Subtest: unauthenticated requests and mismatched origin are refused
+ok 7 - unauthenticated requests and mismatched origin are refused
+  ---
+  duration_ms: 6.671573
+  type: 'test'
+  ...
+# Subtest: CSRF and JSON scalar restrictions protect mutating routes
+ok 8 - CSRF and JSON scalar restrictions protect mutating routes
+  ---
+  duration_ms: 5.525595
+  type: 'test'
+  ...
+# Subtest: journal rejects unbalanced/zero lines
+ok 9 - journal rejects unbalanced/zero lines
+  ---
+  duration_ms: 2.355249
+  type: 'test'
+  ...
+# Subtest: financial statements reconcile and reversals preserve provenance
+ok 10 - financial statements reconcile and reversals preserve provenance
+  ---
+  duration_ms: 2.280416
+  type: 'test'
+  ...
+# Subtest: full service credit permits paid-booking cancellation and a separately confirmed refund
+ok 11 - full service credit permits paid-booking cancellation and a separately confirmed refund
+  ---
+  duration_ms: 30.611392
+  type: 'test'
+  ...
+# Subtest: availability excludes booked or held assets and includes a returned vehicle
+ok 12 - availability excludes booked or held assets and includes a returned vehicle
+  ---
+  duration_ms: 6.538372
+  type: 'test'
+  ...
+# Subtest: published capacities and overage units price extra branches, staff and rental fleet separately
+ok 13 - published capacities and overage units price extra branches, staff and rental fleet separately
+  ---
+  duration_ms: 6.704611
+  type: 'test'
+  ...
+# Subtest: successive upgrades use the original month denominator and old webhook retries remain idempotent
+ok 14 - successive upgrades use the original month denominator and old webhook retries remain idempotent
+  ---
+  duration_ms: 5.086844
+  type: 'test'
+  ...
+# Subtest: a prepaid renewal cannot be silently replaced or discarded by cancellation
+ok 15 - a prepaid renewal cannot be silently replaced or discarded by cancellation
+  ---
+  duration_ms: 5.956224
+  type: 'test'
+  ...
+# Subtest: marketplace-only registration grants no private inventory operations or shared-core charge
+ok 16 - marketplace-only registration grants no private inventory operations or shared-core charge
+  ---
+  duration_ms: 4.293019
+  type: 'test'
+  ...
+# Subtest: parts branch transfers preserve total inventory value without creating sales revenue
+ok 17 - parts branch transfers preserve total inventory value without creating sales revenue
+  ---
+  duration_ms: 7.983629
+  type: 'test'
+  ...
+# Subtest: new HTTP boundary supports module arrays and refuses anonymous, forged-origin and oversized writes
+ok 18 - new HTTP boundary supports module arrays and refuses anonymous, forged-origin and oversized writes
+  ---
+  duration_ms: 25.725219
+  type: 'test'
+  ...
+# Subtest: hostile nested keys and malformed JSON cannot reach the service
+ok 19 - hostile nested keys and malformed JSON cannot reach the service
+  ---
+  duration_ms: 5.810976
+  type: 'test'
+  ...
+# Subtest: Paystack ingress verifies the raw-body signature and re-verifies amount with the provider before activation
+ok 20 - Paystack ingress verifies the raw-body signature and re-verifies amount with the provider before activation
+  ---
+  duration_ms: 8.780149
+  type: 'test'
+  ...
+# Subtest: provider-success flag without matching verified amount cannot activate a subscription
+ok 21 - provider-success flag without matching verified amount cannot activate a subscription
+  ---
+  duration_ms: 3.995951
+  type: 'test'
+  ...
+# Subtest: registration has no forced dealer/parts modules and persists only the selected rental activity
+ok 22 - registration has no forced dealer/parts modules and persists only the selected rental activity
+  ---
+  duration_ms: 26.465726
+  type: 'test'
+  ...
+# Subtest: multi-select gives exactly the subscribed workspaces; auction cannot be selected
+ok 23 - multi-select gives exactly the subscribed workspaces; auction cannot be selected
+  ---
+  duration_ms: 4.962827
+  type: 'test'
+  ...
+# Subtest: parts-only owner sees parts, with rental and vehicle mutation refused by the server
+ok 24 - parts-only owner sees parts, with rental and vehicle mutation refused by the server
+  ---
+  duration_ms: 3.027201
+  type: 'test'
+  ...
+# Subtest: expired and cancelled subscriptions preserve records and block new operations
+ok 25 - expired and cancelled subscriptions preserve records and block new operations
+  ---
+  duration_ms: 5.82054
+  type: 'test'
+  ...
+# Subtest: module role and branch scopes are checked independently of business ownership
+ok 26 - module role and branch scopes are checked independently of business ownership
+  ---
+  duration_ms: 4.430346
+  type: 'test'
+  ...
+# Subtest: inactive staff cannot read data or replay an earlier successful mutation
+ok 27 - inactive staff cannot read data or replay an earlier successful mutation
+  ---
+  duration_ms: 3.446073
+  type: 'test'
+  ...
+# Subtest: capacity counts rental fleet independently of dealer inventory and shared seats once
+ok 28 - capacity counts rental fleet independently of dealer inventory and shared seats once
+  ---
+  duration_ms: 10.500661
+  type: 'test'
+  ...
+# Subtest: shared core is billed once and quotes retain the exact published catalogue version
+ok 29 - shared core is billed once and quotes retain the exact published catalogue version
+  ---
+  duration_ms: 5.208257
+  type: 'test'
+  ...
+# Subtest: customers cannot publish prices or activate their own paid subscription
+ok 30 - customers cannot publish prices or activate their own paid subscription
+  ---
+  duration_ms: 2.177761
+  type: 'test'
+  ...
+# Subtest: unpublished pricing requires a quote and payment must match currency and amount
+ok 31 - unpublished pricing requires a quote and payment must match currency and amount
+  ---
+  duration_ms: 3.300513
+  type: 'test'
+  ...
+# Subtest: paid upgrade adds modules, prorates the increase and preserves current billing end
+ok 32 - paid upgrade adds modules, prorates the increase and preserves current billing end
+  ---
+  duration_ms: 4.024754
+  type: 'test'
+  ...
+# Subtest: downgrades wait until renewal and preserve historical rental records
+ok 33 - downgrades wait until renewal and preserve historical rental records
+  ---
+  duration_ms: 5.121076
+  type: 'test'
+  ...
+# Subtest: idempotent replay does not duplicate stock and conflicting key reuse rolls back
+ok 34 - idempotent replay does not duplicate stock and conflicting key reuse rolls back
+  ---
+  duration_ms: 2.884926
+  type: 'test'
+  ...
+# Subtest: separate tenants cannot discover records by reusing another tenant resource ID
+ok 35 - separate tenants cannot discover records by reusing another tenant resource ID
+  ---
+  duration_ms: 2.436782
+  type: 'test'
+  ...
+# Subtest: money uses exact kobo and rejects fractional kobo
+ok 36 - money uses exact kobo and rejects fractional kobo
+  ---
+  duration_ms: 1.55301
+  type: 'test'
+  ...
+# Subtest: FX rates use eight decimals and half-up rounding
+ok 37 - FX rates use eight decimals and half-up rounding
+  ---
+  duration_ms: 0.331559
+  type: 'test'
+  ...
+# Subtest: percentage, proportional and calendar functions
+ok 38 - percentage, proportional and calendar functions
+  ---
+  duration_ms: 0.786725
+  type: 'test'
+  ...
+# Subtest: instalment schedules allocate every kobo
+ok 39 - instalment schedules allocate every kobo
+  ---
+  duration_ms: 0.388025
+  type: 'test'
+  ...
+# Subtest: pricing matches a tax-exclusive target margin
+ok 40 - pricing matches a tax-exclusive target margin
+  ---
+  duration_ms: 0.353963
+  type: 'test'
+  ...
+# Subtest: parts purchase, fulfilled sale, return and cash refund reconcile stock, AR, AP and profit
+ok 41 - parts purchase, fulfilled sale, return and cash refund reconcile stock, AR, AP and profit
+  ---
+  duration_ms: 30.46093
+  type: 'test'
+  ...
+# Subtest: open orders reserve stock and competing fulfilments cannot oversell it
+ok 42 - open orders reserve stock and competing fulfilments cannot oversell it
+  ---
+  duration_ms: 4.941326
+  type: 'test'
+  ...
+# Subtest: pending payment evidence cannot overpay an invoice when independently verified
+ok 43 - pending payment evidence cannot overpay an invoice when independently verified
+  ---
+  duration_ms: 6.083256
+  type: 'test'
+  ...
+# Subtest: shared office costs stay outside module profit and posting twice cannot create a duplicate payable
+ok 44 - shared office costs stay outside module profit and posting twice cannot create a duplicate payable
+  ---
+  duration_ms: 6.734176
+  type: 'test'
+  ...
+# Subtest: persisted state survives a fresh service process and failed mutations leave no partial state
+ok 45 - persisted state survives a fresh service process and failed mutations leave no partial state
+  ---
+  duration_ms: 26.232154
+  type: 'test'
+  ...
+# Subtest: two independent workers racing to book one fleet asset produce exactly one booking
+ok 46 - two independent workers racing to book one fleet asset produce exactly one booking
+  ---
+  duration_ms: 135.988938
+  type: 'test'
+  ...
+# Subtest: stale quote payment cannot undo a newer subscription change
+ok 47 - stale quote payment cannot undo a newer subscription change
+  ---
+  duration_ms: 4.600341
+  type: 'test'
+  ...
+# Subtest: rental deposit, customer receipt, return, deduction and refund reconcile without recognising deposits as sales
+ok 48 - rental deposit, customer receipt, return, deduction and refund reconcile without recognising deposits as sales
+  ---
+  duration_ms: 36.567787
+  type: 'test'
+  ...
+# Subtest: overlapping bookings fail, adjacent intervals work and a cancelled booking releases capacity
+ok 49 - overlapping bookings fail, adjacent intervals work and a cancelled booking releases capacity
+  ---
+  duration_ms: 7.721403
+  type: 'test'
+  ...
+# Subtest: checkout requires the agreed deposit and return mileage cannot decrease
+ok 50 - checkout requires the agreed deposit and return mileage cannot decrease
+  ---
+  duration_ms: 5.803023
+  type: 'test'
+  ...
+# Subtest: an overdue checked-out vehicle blocks further bookings and a maintenance hold cannot disrupt live bookings
+ok 51 - an overdue checked-out vehicle blocks further bookings and a maintenance hold cannot disrupt live bookings
+  ---
+  duration_ms: 6.436738
+  type: 'test'
+  ...
+# Subtest: returns and deposit refunds remain possible after subscription expiry
+ok 52 - returns and deposit refunds remain possible after subscription expiry
+  ---
+  duration_ms: 5.715631
+  type: 'test'
+  ...
+# Subtest: cancelled booking refunds cannot exceed deposit balance and duplicate references roll back
+ok 53 - cancelled booking refunds cannot exceed deposit balance and duplicate references roll back
+  ---
+  duration_ms: 5.662211
+  type: 'test'
+  ...
+# Subtest: invalid dates and excessively long rentals are rejected before allocating charges
+ok 54 - invalid dates and excessively long rentals are rejected before allocating charges
+  ---
+  duration_ms: 3.398931
+  type: 'test'
+  ...
+# Subtest: haulage assignment, dispatch, driver proof and job costs produce module profit
+ok 55 - haulage assignment, dispatch, driver proof and job costs produce module profit
+  ---
+  duration_ms: 10.673782
+  type: 'test'
+  ...
+# Subtest: another driver cannot deliver an unassigned job or view its financial details
+ok 56 - another driver cannot deliver an unassigned job or view its financial details
+  ---
+  duration_ms: 7.781374
+  type: 'test'
+  ...
+# Subtest: historical rental statements use posting dates, earned services and deposit liabilities
+ok 57 - historical rental statements use posting dates, earned services and deposit liabilities
+  ---
+  duration_ms: 37.591539
+  type: 'test'
+  ...
+# Subtest: single-activity profit includes shared office cost; mixed activity keeps it explicit and excludes unrelated accounts
+ok 58 - single-activity profit includes shared office cost; mixed activity keeps it explicit and excludes unrelated accounts
+  ---
+  duration_ms: 15.49737
+  type: 'test'
+  ...
+# Subtest: review fingerprints become stale after postings; export contains ledger, ageing and tax review without spreadsheet formulas
+ok 59 - review fingerprints become stale after postings; export contains ledger, ageing and tax review without spreadsheet formulas
+  ---
+  duration_ms: 10.297314
+  type: 'test'
+  ...
+# Subtest: financial year, prior periods, closed-period controls and backdating remain explicit
+ok 60 - financial year, prior periods, closed-period controls and backdating remain explicit
+  ---
+  duration_ms: 6.545272
+  type: 'test'
+  ...
+# Subtest: parts invoice tax, discount, verification and full return appear in correct periods
+ok 61 - parts invoice tax, discount, verification and full return appear in correct periods
+  ---
+  duration_ms: 5.89405
+  type: 'test'
+  ...
+# Subtest: instalment ageing reconstructs historical allocations instead of using current paid schedule values
+ok 62 - instalment ageing reconstructs historical allocations instead of using current paid schedule values
+  ---
+  duration_ms: 10.539119
+  type: 'test'
+  ...
+# Subtest: fixed-asset and depreciation adjustments support rental year-end review without treating assets as trading inventory
+ok 63 - fixed-asset and depreciation adjustments support rental year-end review without treating assets as trading inventory
+  ---
+  duration_ms: 3.253482
+  type: 'test'
+  ...
+# Subtest: an activity-limited accountant cannot read or settle another activity or shared office payables
+ok 64 - an activity-limited accountant cannot read or settle another activity or shared office payables
+  ---
+  duration_ms: 5.681852
+  type: 'test'
+  ...
+# Subtest: limited report reviews stay visible to the same authorised activities and private from another activity scope
+ok 65 - limited report reviews stay visible to the same authorised activities and private from another activity scope
+  ---
+  duration_ms: 4.577988
+  type: 'test'
+  ...
+# Subtest: foreign parts supplier bills retain gross AP, net inventory, recoverable tax and exact settlement FX differences
+ok 66 - foreign parts supplier bills retain gross AP, net inventory, recoverable tax and exact settlement FX differences
+  ---
+  duration_ms: 7.863352
+  type: 'test'
+  ...
+# Subtest: foreign operating expenses require approval before posting recoverable input tax and preserve actual bank execution cost
+ok 67 - foreign operating expenses require approval before posting recoverable input tax and preserve actual bank execution cost
+  ---
+  duration_ms: 5.0571
+  type: 'test'
+  ...
+# Subtest: inventory publication delivers to local public marketplace with only selected photos and safe current availability
+ok 68 - inventory publication delivers to local public marketplace with only selected photos and safe current availability
+  ---
+  duration_ms: 44.624104
+  type: 'test'
+  ...
+# Subtest: software-only plans cannot publish, private images stay tenant scoped and SVG data is rejected
+ok 69 - software-only plans cannot publish, private images stay tenant scoped and SVG data is rejected
+  ---
+  duration_ms: 10.611428
+  type: 'test'
+  ...
+# Subtest: marketplace-only listing mode has an executable publishing flow without private inventory or financial access
+ok 70 - marketplace-only listing mode has an executable publishing flow without private inventory or financial access
+  ---
+  duration_ms: 4.241351
+  type: 'test'
+  ...
+# Subtest: failed publication delivery is durable and retryable; platform moderation authority is distinct from owner
+ok 71 - failed publication delivery is durable and retryable; platform moderation authority is distinct from owner
+  ---
+  duration_ms: 12.654185
+  type: 'test'
+  ...
+# Subtest: signed transport and receiver verify content, timestamps and monotone withdrawal generations
+ok 72 - signed transport and receiver verify content, timestamps and monotone withdrawal generations
+  ---
+  duration_ms: 12.640555
+  type: 'test'
+  ...
+# Subtest: making a published photo private or removing it immediately closes public access
+ok 73 - making a published photo private or removing it immediately closes public access
+  ---
+  duration_ms: 9.47102
+  type: 'test'
+  ...
+# Subtest: partner-financed vehicle sales identify lender as debtor while buyer invoice stays addressed to customer
+ok 74 - partner-financed vehicle sales identify lender as debtor while buyer invoice stays addressed to customer
+  ---
+  duration_ms: 37.713663
+  type: 'test'
+  ...
+# Subtest: full dealer return restores stock and records a separately verified buyer refund without changing historical profit
+ok 75 - full dealer return restores stock and records a separately verified buyer refund without changing historical profit
+  ---
+  duration_ms: 23.870074
+  type: 'test'
+  ...
+# Subtest: consignment owner payout requires handover and blocks a return after verified owner settlement
+ok 76 - consignment owner payout requires handover and blocks a return after verified owner settlement
+  ---
+  duration_ms: 10.851139
+  type: 'test'
+  ...
+# Subtest: review-first Smart Upload and CSV import are atomic, private and reject duplicate/unsafe input
+ok 77 - review-first Smart Upload and CSV import are atomic, private and reject duplicate/unsafe input
+  ---
+  duration_ms: 4.107809
+  type: 'test'
+  ...
+# Subtest: recurring expenses generate drafts once per due period and require approval before financial posting
+ok 78 - recurring expenses generate drafts once per due period and require approval before financial posting
+  ---
+  duration_ms: 2.791336
+  type: 'test'
+  ...
+# Subtest: staff invitation reserves capacity, is account-bound and applies role/module access only after acceptance
+ok 79 - staff invitation reserves capacity, is account-bound and applies role/module access only after acceptance
+  ---
+  duration_ms: 5.355859
+  type: 'test'
+  ...
+# Subtest: Passport append-only history is private, with expiring and revocable named-account grants
+ok 80 - Passport append-only history is private, with expiring and revocable named-account grants
+  ---
+  duration_ms: 7.334211
+  type: 'test'
+  ...
+# Subtest: transfer shortages retain value in transit until an accountant explicitly resolves the difference
+ok 81 - transfer shortages retain value in transit until an accountant explicitly resolves the difference
+  ---
+  duration_ms: 7.229803
+  type: 'test'
+  ...
+# Subtest: FX reference validates source timestamp, caches indicative quotes and rejects stale data without invented fallback
+ok 82 - FX reference validates source timestamp, caches indicative quotes and rejects stale data without invented fallback
+  ---
+  duration_ms: 4.952001
+  type: 'test'
+  ...
+# Subtest: vehicle transfers preserve historical branch allocation, quarantine mismatches and retain all acquisition value
+ok 83 - vehicle transfers preserve historical branch allocation, quarantine mismatches and retain all acquisition value
+  ---
+  duration_ms: 13.810709
+  type: 'test'
+  ...
+# Subtest: additive upgrade retains v0.4 workspace data and rejects future extension formats without reinitialising them
+ok 84 - additive upgrade retains v0.4 workspace data and rejects future extension formats without reinitialising them
+  ---
+  duration_ms: 2.891747
+  type: 'test'
+  ...
+# Subtest: subscriber directory is paginated and reserved for separately granted platform authority
+ok 85 - subscriber directory is paginated and reserved for separately granted platform authority
+  ---
+  duration_ms: 2.384082
+  type: 'test'
+  ...
+# Subtest: cross-business Passport grants expose only explicitly shared history to a business with its own authorised vehicle relationship
+ok 86 - cross-business Passport grants expose only explicitly shared history to a business with its own authorised vehicle relationship
+  ---
+  duration_ms: 4.465748
+  type: 'test'
+  ...
+# Subtest: workshop lifecycle automatically keeps private vehicle history and idempotent action replay does not duplicate it
+ok 87 - workshop lifecycle automatically keeps private vehicle history and idempotent action replay does not duplicate it
+  ---
+  duration_ms: 2.536612
+  type: 'test'
+  ...
+# Subtest: Smart Upload preview persists no supplied transcript or draft in the business audit
+ok 88 - Smart Upload preview persists no supplied transcript or draft in the business audit
+  ---
+  duration_ms: 1.481763
+  type: 'test'
+  ...
+# Subtest: subscription mode, expiry and pinned package access
+ok 89 - subscription mode, expiry and pinned package access
+  ---
+  duration_ms: 2.366766
+  type: 'test'
+  ...
+# Subtest: branch dispatch and destination-only receipt with discrepancy
+ok 90 - branch dispatch and destination-only receipt with discrepancy
+  ---
+  duration_ms: 1.498067
+  type: 'test'
+  ...
+# Subtest: expenses post once; recurring drafts clamp month ends and deduplicate
+ok 91 - expenses post once; recurring drafts clamp month ends and deduplicate
+  ---
+  duration_ms: 0.994438
+  type: 'test'
+  ...
+# Subtest: public marketplace projection never includes private costs or full VIN
+ok 92 - public marketplace projection never includes private costs or full VIN
+  ---
+  duration_ms: 0.267663
+  type: 'test'
+  ...
+# Subtest: platform operator rights are distinct from business OWNER
+ok 93 - platform operator rights are distinct from business OWNER
+  ---
+  duration_ms: 0.388806
+  type: 'test'
+  ...
+# Subtest: sales can create customer but viewer cannot mutate
+ok 94 - sales can create customer but viewer cannot mutate
+  ---
+  duration_ms: 15.90911
+  type: 'test'
+  ...
+# Subtest: inventory readiness, version conflict, acquisition, sale and revenue at handover
+ok 95 - inventory readiness, version conflict, acquisition, sale and revenue at handover
+  ---
+  duration_ms: 6.812113
+  type: 'test'
+  ...
+# Subtest: failed operation rolls back and replayed idempotency key is stable
+ok 96 - failed operation rolls back and replayed idempotency key is stable
+  ---
+  duration_ms: 1.678038
+  type: 'test'
+  ...
+# Subtest: tenant and branch scope protect reads and writes
+ok 97 - tenant and branch scope protect reads and writes
+  ---
+  duration_ms: 0.49815
+  type: 'test'
+  ...
+1..97
+# tests 97
+# suites 0
+# pass 97
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 528.144649

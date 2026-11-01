@@ -1,0 +1,57 @@
+{
+  "completed_at": "2026-11-01T11:00:15.470Z",
+  "checks": [
+    {
+      "external_origins_and_invalid_csrf_refused": true,
+      "origin_configuration": "normal unpinned startup"
+    },
+    {
+      "profile": "rentals",
+      "modules": [
+        "RENTAL"
+      ],
+      "passed": true
+    },
+    {
+      "profile": "parts",
+      "modules": [
+        "PARTS"
+      ],
+      "passed": true
+    },
+    {
+      "profile": "dealer",
+      "modules": [
+        "DEALER"
+      ],
+      "passed": true
+    },
+    {
+      "profile": "haulage",
+      "modules": [
+        "HAULAGE"
+      ],
+      "passed": true
+    },
+    {
+      "profile": "mixed",
+      "modules": [
+        "DEALER",
+        "PARTS",
+        "RENTAL",
+        "HAULAGE",
+        "MECHANIC"
+      ],
+      "passed": true
+    },
+    {
+      "driver_financial_isolation": true
+    },
+    {
+      "new_subscriber_selection": true
+    },
+    {
+      "next_page_response": 200
+    }
+  ]
+}

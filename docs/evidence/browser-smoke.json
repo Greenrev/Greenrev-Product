@@ -1,0 +1,18 @@
+{
+  "completed_at": "2026-11-01T11:00:27.051Z",
+  "checks": [
+    "Development effect replay creates one initial browser session",
+    "Previous charcoal, white and lime palette restored",
+    "Rental-only menu excludes unrelated business modules",
+    "Rental checkout and return through actual forms",
+    "Parts-only workspace and seeded stock display",
+    "Dispatch, driver financial isolation and proof of delivery",
+    "Mixed business sees all five selected modules",
+    "New subscriber selects Parts only and automatically receives the correct menu",
+    "Platform publishes prices and subscriber receives an itemised quote with one shared core",
+    "390px mobile workspace has no page-level horizontal overflow",
+    "No uncaught browser JavaScript errors",
+    "Profile switching and reload work at 127.0.0.1 without an origin override",
+    "Profile switching and reload work at localhost without an origin override"
+  ]
+}
